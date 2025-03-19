@@ -49,7 +49,7 @@ public:
 		return connected;
 	}
 
-	void set_username(std::string newUsername) {
+	void set_username(std::string& newUsername) {
 		username = newUsername;
 	}
 
@@ -57,7 +57,7 @@ public:
 		return username;
 	}
 
-	void set_password(std::string newPassword) {
+	void set_password(std::string& newPassword) {
 		password = newPassword;
 	}
 
