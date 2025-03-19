@@ -66,7 +66,7 @@ public:
 	}
 
 	void* operator new(size_t size) {
-		std::cout << "Overloaded new ";
+		std::cout << "overloaded new ";
 
 		void* pointer = malloc(size);
 		if (!pointer) {
@@ -77,7 +77,7 @@ public:
 	}
 
 	void operator delete(void* pointer) {
-		std::cout << "Overloaded delete ";
+		std::cout << "overloaded delete ";
 		free(pointer);
 	}
 
