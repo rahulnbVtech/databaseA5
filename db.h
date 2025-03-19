@@ -13,7 +13,10 @@ private:
 	static Database* instance;
 
 
-	Database(const std::string& database, const std::string& username, const std::string& password);
+	Database(const std::string& database, const std::string& username, const std::string& password)
+		: db(database), username(username), password(password) {
+
+	}
 
 public:
 	~Database() {
@@ -22,7 +25,7 @@ public:
 		}
 	}
 
-	Database* getInstance(const std::string& databaseName, const std::string& username, const std::string& password) {
+	static Database* getInstance(const std::string& databaseName, const std::string& username, const std::string& password) {
 		if (instance == nullptr) {
 			instance = new Database(databaseName, username, password);
 		}
@@ -46,23 +49,26 @@ public:
 		return connected;
 	}
 
-	void set_username(std::string username) {
-		this.username = username;
+	void set_username(std::string newUsername) {
+		username = newUsername;
 	}
 
 	std::string get_username() const{
 		return username;
 	}
 
-	void set_password(std::string password) {
-		this.password = password;
+	void set_password(std::string newPassword) {
+		password = newPassword;
 	}
 
 	std::string get_password() const {
 		return password;
 	}
 
-	static void resetInstance();
+	static void resetInstance() {
+		delete instance;
+		instance = nullptr
+	}
 		
 
 };
