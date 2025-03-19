@@ -45,7 +45,7 @@ public:
 		connected = false;
 	}
 
-	bool connectStatus() const {
+	bool isConnected() const {
 		return connected;
 	}
 
