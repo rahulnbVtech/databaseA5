@@ -65,10 +65,7 @@ public:
 		return password;
 	}
 
-	static void resetInstance() {
-		delete instance;
-		instance = nullptr
-	}
+	static void resetInstance();
 		
 
 };
