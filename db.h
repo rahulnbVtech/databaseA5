@@ -65,6 +65,22 @@ public:
 		return password;
 	}
 
+	void* operator new(size_t size) {
+		std::count << "Overloaded new ";
+
+		void* pointer = malloc(size);
+		if (!pointer) {
+			throw std::bad_alloc();
+		}
+
+		return pointer;
+	}
+
+	void operator delete(void* pointer) {
+		std::cout << "Overloaded delete ";
+		free(pointer);
+	}
+
 	static void resetInstance();
 		
 
