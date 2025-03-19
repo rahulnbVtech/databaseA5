@@ -66,7 +66,7 @@ public:
 	}
 
 	void* operator new(size_t size) {
-		std::count << "Overloaded new ";
+		std::cout << "Overloaded new ";
 
 		void* pointer = malloc(size);
 		if (!pointer) {
