@@ -39,23 +39,11 @@ public:
 		}
 	}
 
-	Database(const Database& src) : Database() {
-		throw std::runtime_error("not allowed");
-	}
+	Database(const Database&) = delete;
+	Database& operator=(const Database&) = delete;
+	Database(Database&&) = delete;
+	Database& operator=(Database&&) = delete;
 
-	Database(Database&& src) : Database() {
-		throw std::runtime_error("Not allowed");
-	}
-
-	Database& Database::operator = (Database& src) {
-		throw std::runtime_error("Not allowed");
-		return *this;
-	}
-
-	Database& Database::operator = (const Database& src) {
-		throw std::runtime_error("Not allowed");
-		return *this;
-	}
 
 
 	bool isTimeout() {
