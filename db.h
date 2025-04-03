@@ -39,22 +39,20 @@ public:
 		}
 	}
 
-	Database(const Database& src) : Database() {
+	Database(const Database&) {
 		throw std::runtime_error("not allowed");
 	}
 
-	Database(Database&& src) : Database() {
+	Database(Database&&) {
 		throw std::runtime_error("Not allowed");
 	}
 
-	Database& Database::operator = (Database& src) {
+	Database& operator=(Database&&) {
 		throw std::runtime_error("Not allowed");
-		return *this;
 	}
 
-	Database& Database::operator = (const Database& src) {
+	Database& operator=(const Database&) {
 		throw std::runtime_error("Not allowed");
-		return *this;
 	}
 
 
