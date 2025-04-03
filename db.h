@@ -39,23 +39,37 @@ public:
 		}
 	}
 
+	/*
+	* the copy constructor
+	*/
 	Database(const Database&) {
 		throw std::runtime_error("not allowed");
 	}
 
+	/*
+	* the move constructor
+	*/
 	Database(Database&&) {
 		throw std::runtime_error("Not allowed");
 	}
 
+	/*
+	* the move assignment operator
+	*/
 	Database& operator=(Database&&) {
 		throw std::runtime_error("Not allowed");
 	}
 
+	/*
+	* the copy assignment operator
+	*/
 	Database& operator=(const Database&) {
 		throw std::runtime_error("Not allowed");
 	}
 
-
+	/*
+	* check to see if method timed out
+	*/
 	bool isTimeout() {
 		if (time(nullptr) - last_activity > TIMEOUT) {
 			return true;
@@ -63,6 +77,9 @@ public:
 		return false;
 	}
 
+	/*
+	* refresh the connection
+	*/
 	void refreshConnection() {
 		last_activity = time(nullptr);
 	}
