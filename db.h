@@ -4,6 +4,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <string>
+#include <ctime>
 
 class Database {
 private:
@@ -15,11 +16,15 @@ private:
 
 	static Database* instance; 
 
+	time_t last_activity;
+	static const int TIMEOUT{ 5 };
+
 	/*
 	* this is the constructor for the database
 	*/
 	Database(const std::string& database, const std::string& username, const std::string& password)
 		: db(database), username(username), password(password) {
+		refreshConnection();
 
 	}
 
@@ -32,6 +37,36 @@ public:
 		if (connected) {
 			disconnect();
 		}
+	}
+
+	Database(const Database& src) : Database() {
+		throw std::runtime_error("not allowed");
+	}
+
+	Database(Database&& src) : Database() {
+		throw std::runtime_error("Not allowed");
+	}
+
+	Database& Database::operator = (Database& src) {
+		throw std::runtime_error("Not allowed");
+		return *this;
+	}
+
+	Database& Database::operator = (const Database& src) {
+		throw std::runtime_error("Not allowed");
+		return *this;
+	}
+
+
+	bool isTimeout() {
+		if (time(NULL) - last_activity > TIMEOUT) {
+			return true;
+		}
+		return false;
+	}
+
+	void refreshConnection() {
+		last_activity = time(NULL);
 	}
 
 
